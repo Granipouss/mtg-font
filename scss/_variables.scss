@@ -1,0 +1,30 @@
+$mtg-color-list: w u b r g;
+
+// =============================================================================
+// * colors
+// =============================================================================
+$mtg-colors: (
+  c: rgb(202, 197, 192), // Colorless
+
+  w: rgb(248, 246, 216), // White
+  u: rgb(193, 215, 233), // Blue
+  b: rgb(186, 177, 171), // Black
+  r: rgb(228, 153, 119), // Red
+  g: rgb(163, 192, 149), // Green
+);
+
+$mtg-color-grey: map-get($mtg-colors, 'c'); // Font Color
+$mtg-color-font: rgb(13,15,15); // Font Color
+
+$mtg-color-black: rgb(0, 0, 0);
+$mtg-color-white: rgb(255,255,255);
+
+$mtg-colors: (
+  c: rgb(202, 197, 192), // Colorless
+
+  w: rgb(248, 246, 216), // White
+  u: rgb(193, 215, 233), // Blue
+  b: rgb(186, 177, 171), // Black
+  r: rgb(228, 153, 119), // Red
+  g: rgb(163, 192, 149), // Green
+);

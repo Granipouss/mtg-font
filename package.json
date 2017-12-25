@@ -21,12 +21,27 @@
   "bugs": {
     "url": "https://github.com/AlexandreArpin/mtg-font/issues"
   },
-  "scripts": {},
+  "scripts": {
+    "build": "npm run build-clean && npm run build-sass && npm run build-autoprefix",
+    "build-autoprefix": "postcss --use autoprefixer --map false --output css/mtg-font.css css/mtg-font.css",
+    "build-clean": "rimraf css",
+    "build-sass": "node-sass --output-style expanded --source-map true mtg-font.scss css/mtg-font.css",
+    "start": "npm run build-sass -- --watch"
+  },
   "files": [
     "css",
     "svg",
     "fonts",
     "LICENSE",
     "README.md"
-  ]
+  ],
+  "devDependencies": {
+    "autoprefixer": "^7.2.3",
+    "node-sass": "^4.7.2",
+    "postcss-cli": "^4.1.1",
+    "rimraf": "^2.6.2"
+  },
+  "dependencies": {
+    "keyrune": "^3.1.6"
+  }
 }

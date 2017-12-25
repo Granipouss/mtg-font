@@ -1,0 +1,6 @@
+
+$font-path: "../fonts";
+
+@include font-face("magic-font", "#{$font-path}/magic-font", normal, normal, eot woff ttf svg);
+@include font-face("Matrix-Bold", "#{$font-path}/Matrix-Bold", normal, normal, eot woff ttf svg);
+@include font-face("Mplantin", "#{$font-path}/Mplantin", normal, normal, eot woff ttf svg);

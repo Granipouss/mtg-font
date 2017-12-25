@@ -1,0 +1,170 @@
+/* Container setup and utility classes
+ * Default font icon is magic-font, anything inside .mi is considered to be magic-font
+ * This behavior is overriden on certain use-cases where we want to use alphanumerics
+ * Ex: colorless mana <i class='mi mi-mana'>1</i>
+ * -------------------------- */
+.mi, .mi:before {
+  display: inline-block;
+  font: normal normal normal 14px/1 'magic-font';
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* makes the font 33% larger relative to the icon container */
+.mi-lg {
+  font-size: 1.33333333em;
+  line-height: 0.75em;
+  vertical-align: -15%;
+}
+
+.mi-2x { font-size: 2em; }
+.mi-3x { font-size: 3em; }
+.mi-4x { font-size: 4em; }
+.mi-5x { font-size: 5em; }
+
+.mi-fw {
+  width: 1.28571429em;
+  text-align: center;
+}
+
+.mi-rotate-90 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+.mi-rotate-180 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.mi-rotate-270 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+  -webkit-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  transform: rotate(270deg);
+}
+.mi-flip-horizontal {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1);
+  -webkit-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+}
+.mi-flip-vertical {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1);
+  -webkit-transform: scale(1, -1);
+  -ms-transform: scale(1, -1);
+  transform: scale(1, -1);
+}
+:root .fa-rotate-90,
+:root .fa-rotate-180,
+:root .fa-rotate-270,
+:root .fa-flip-horizontal,
+:root .fa-flip-vertical {
+  filter: none;
+}
+
+/* Mana
+ * Default behaviour is to create a round circle and compound css selector to show a symbol
+ * Ex: colorless mana <i class='mi mi-mana mi-2'></i>
+ * -------------------------- */
+.mi-mana,  .mi-mana-w, .mi-mana-u, .mi-mana-b, .mi-mana-r, .mi-mana-g {
+  width: 1em;
+  height:0;
+  padding-bottom: 1em;
+  text-align: center;
+  color: $mtg-color-font;
+  background: $mtg-color-grey;
+  border-radius: 100%;
+}
+
+/* Split Mana - Mana that can be paid two different ways
+ * This is done by wrapping 2 mana symbols in a split div
+ * The idea is to make 2 half circle with the symbols or mana cost, rotate them 45', and then unrotate the symbols
+ * Ex: Red/Green mana symbol <div class="mi-split"><i class="mi mi-r"></i><i class="mi mi-g"></i></div>
+ * -------------------------- */
+.mi-split {
+  display:inline-block;
+  transform: rotate(45deg);
+
+  .mi {
+    background: $mtg-color-grey;
+    border-radius: 100% / 50%;
+  }
+
+  .mi:nth-child(1) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .mi:nth-child(2) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  /* Split Mana with Mana Symbols */
+  .mi:before {
+    display:inline-block;
+    position:relative;
+    font-size:0.44em;
+    margin:0.08em;
+    -ms-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+
+  .mi:nth-child(1).mi:before {
+    top:-0.7em;
+    left:0.05em;
+    right:0;
+    bottom:0;
+  }
+
+  .mi:nth-child(2).mi:before {
+    top:-0.55em;
+  }
+
+  /* Split Mana with Letters/Numbers
+  * Work in Progress - The CSS required to generate the split mana with the current dom is pretty ugly
+  * I don't believe this works on all browser and scales.
+  * Ex: 2/Green mana symbol <div class="mi-split mi-shadow"><i class="mi mi"><span>2</span></i><i class="mi mi-g"></i></div>
+  * -------------------------- */
+  @for $i from 0 through 9 {
+    .mi-#{$i}:before {
+      left: 0.15em !important;
+      font-family: 'Mplantin';
+      font-size: 0.58em;
+      margin: -0.08em;
+      width: 1em;
+    }
+  }
+
+  /* Split Mana Shadow
+  * Work in Progress - The behaviour isn't perfect because the shadow leaks in the middle seperator
+  * Ex: Red/Green mana symbol <div class="mi-split mi-shadow"><i class="mi mi-r"></i><i class="mi mi-g"></i></div>
+  * -------------------------- */
+  &.mi-shadow .mi:nth-child(1),
+  &.mi-shadow .mi:nth-child(2) {
+    box-shadow: 0em 0.03em 0.02em black;
+  }
+
+}
+
+/* Mana Color Background - Enforce the right color
+ * Ex: Red mana background symbol <i class="mi mi-mana-r"></i>
+ * -------------------------- */
+@each $sym, $color in $mtg-colors {
+  .mi-mana-#{$sym},
+  .mi-#{$sym}.mi-mana,
+  .mi-split .mi-#{$sym} {
+    background: $color !important;
+  }
+}
+
+.mi-mana.mi-untap, .mi-mana.mi-q{
+  background: $mtg-color-black;
+  &:before { color: $mtg-color-white; }
+}
