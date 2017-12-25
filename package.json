@@ -29,11 +29,13 @@
     "start": "npm run build-sass -- --watch"
   },
   "files": [
-    "css",
     "svg",
+    "css",
+    "scss",
     "fonts",
     "LICENSE",
-    "README.md"
+    "README.md",
+    "mtg-font.scss"
   ],
   "devDependencies": {
     "autoprefixer": "^7.2.3",
