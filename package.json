@@ -1,0 +1,32 @@
+{
+  "name": "mtg-font",
+  "version": "0.1.0",
+  "homepage": "http://alexandrearpin.com/mtg-font",
+  "author": "Alexandre Arpin",
+  "description": "An iconic font and CSS toolkit for Magic The Gathering",
+  "main": "css/magic-font.css",
+  "style": "mtg-font/css/magic-font.css",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Granipouss/mtg-font.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "font",
+    "css",
+    "mtg",
+    "magic",
+    "icon"
+  ],
+  "bugs": {
+    "url": "https://github.com/AlexandreArpin/mtg-font/issues"
+  },
+  "scripts": {},
+  "files": [
+    "css",
+    "svg",
+    "fonts",
+    "LICENSE",
+    "README.md"
+  ]
+}
