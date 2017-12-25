@@ -4,8 +4,8 @@
   "homepage": "http://alexandrearpin.com/mtg-font",
   "author": "Alexandre Arpin",
   "description": "An iconic font and CSS toolkit for Magic The Gathering",
-  "main": "css/magic-font.css",
-  "style": "mtg-font/css/magic-font.css",
+  "main": "css/mtg-font.css",
+  "style": "mtg-font/css/mtg-font.css",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Granipouss/mtg-font.git"
